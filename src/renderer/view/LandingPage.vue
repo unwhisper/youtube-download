@@ -161,9 +161,7 @@ export default {
         let formats = ytdl.chooseFormat(data.formats, { quality: itag })
         // Stream & Converter
         let stream = ytdl(url, {requestOptions: {agent}, format: formats})
-        let name = data.title.replace(/\//g, '-')
-        name = name.replace(/\\/g, '-')
-        name = name.replace(/\?/g, '-')
+        let name = data.title.replace(/\\|\/|\||\<|\>|\:|\"|\*|\?/g, '_')
         stream.pipe(fs.createWriteStream(uploadPath + name + '.' + type))
         console.log('Starting Download')
 
