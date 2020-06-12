@@ -117,7 +117,7 @@ export default {
       that.mergePath = savePath
       let command = ffmpeg(video)
         .input(audio)
-        .outputOptions(['-c:v copy', '-c:a copy'])
+        .outputOptions(['-c:v h264', '-c:a aac'])
         .output(savePath)
         .on('start', function (commandLine) {
           that.progresshide = false
